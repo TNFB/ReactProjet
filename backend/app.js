@@ -143,7 +143,7 @@ app.post('/signup', (req, res, next) => {
                 res.status(500).json({ error: 'Erreur serveur lors création utilisateur.' });
             } else {
                 connection.query(
-                    'INSERT INTO utilisateur (email, password) VALUES (?, ?)', [email, hashedPassword], (error, results) => {
+                    'INSERT INTO utilisateur (email, password, role) VALUES (?, ?, "user")', [email, hashedPassword], (error, results) => {
                         if (error) {
                             console.error('Erreur insertion utilisateur dans la base de données :', error);
                             res.status(500).json({ error: 'Erreur serveur lors création utilisateur.' });
@@ -178,8 +178,12 @@ app.post('/login', (req, res, next) => {
                     } else {
                         if (match) {
                             const userId = results[0].id; // 'id' est la colonne contenant l'ID utilisateur
+                            const role = results[0].role; // 'role' est la colonne contenant le rôle de l'utilisateur
+                            const nom = results[0].nom; // 'nom' est la colonne contenant le nom de l'utilisateur
+                            const prenom = results[0].prenom; // 'prenom' est la colonne contenant le prénom de l'utilisateur
+                            const adresse = results[0].adresse; // 'adresse' est la colonne contenant l'adresse de l'utilisateur
                             const token = jwt.sign({ userId }, 'votre_clé_secrète', { expiresIn: '24h' }); // Créez un jeton JWT
-                            res.status(200).json({ message: 'Authentification réussie.', userId: userId , token: token, userEmail: email});
+                            res.status(200).json({ message: 'Authentification réussie.', userId: userId , token: token, userEmail: email, role: role, nom: nom, prenom: prenom, adresse: adresse});
                         } else {
                             res.status(401).json({ error: 'Identifiants incorrects.' });
                         }
@@ -190,6 +194,67 @@ app.post('/login', (req, res, next) => {
             }
         }
     });
+});
+
+// Route pour modifier les informations de l'utilisateur
+app.post('/modifyProfile/:id', (req, res, next) => {
+    const userId = req.params.id;
+    const { modify_email, modify_password, modify_nom, modify_prenom, modify_adresse } = req.body;
+    // Vérifiez si l'email et le mot de passe ont été envoyés
+    if (modify_email && modify_password) {
+        // Hasher le mot de passe avant de l'enregistrer dans la base de données
+        bcrypt.hash(modify_password, 10, (hashError, hashedPassword) => {
+            if (hashError) {
+                console.error('Erreur lors du hachage du mot de passe :', hashError);
+                res.status(500).json({ error: 'Erreur serveur lors modification utilisateur.' });
+            } else {
+                connection.query(
+                    'UPDATE utilisateur SET email = ?, password = ?, nom = ?, prenom = ?, adresse = ? WHERE id = ?', [modify_email, hashedPassword, modify_nom, modify_prenom, modify_adresse, userId], (error, results) => {
+                        if (error) {
+                            console.error('Erreur modification utilisateur dans la base de données :', error);
+                            res.status(500).json({ error: 'Erreur serveur lors modification utilisateur.' });
+                        } else {
+                            res.status(200).json({ message: 'Utilisateur modifié avec succès.', userId: userId });
+                        }
+                    });
+            }
+        });
+    } else {
+        res.status(400).json({ error: 'Email et mot de passe requis pour modification.' });
+    }
+});
+
+// Affichage des avis
+app.get('/avis/:id', async (req, res, next) => {
+    const idArticle = req.params.id;
+    connection.query('SELECT * FROM avis WHERE idArticle = ?', [idArticle], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de la requête SELECT :', error);
+            res.status(500).json({ error: 'Erreur serveur lors de la requête SELECT.' });
+        } else {
+            if (results.length > 0) {
+                res.status(200).json(results);
+            } else {
+                // Si aucun résultat n'est trouvé, renvoyer une réponse 404
+                res.status(404).json({ error: 'Aucun avis trouvé avec cet ID d\'article.' });
+            }
+        }
+    });
+});
+
+// Route pour ajouter un avis dans la BDD
+app.post('/avis/:id', (req, res, next) => {
+    const idArticle = req.params.id;
+    const {envoiAvis, userId} = req.body;
+    connection.query(
+        'INSERT INTO avis (idArticle, avis, idUser) VALUES (?, ?, ?)', [idArticle, envoiAvis, userId], (error, results) => {
+            if (error) {
+                console.error('Erreur insertion avis dans la base de données :', error);
+                res.status(500).json({ error: 'Erreur serveur lors ajout avis.' });
+            } else {
+                res.status(201).json({ message: 'Avis ajouté avec succès.' });
+            }
+        });
 });
 
 module.exports = app;
