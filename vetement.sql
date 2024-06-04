@@ -20,9 +20,9 @@ CREATE TABLE `vetement` (
 --
 
 INSERT INTO `vetement` (`id`, `name`, `cover`, `category`, `isSpecialOffer`, `taille`, `confort`, `price`) VALUES
-(1, 'pull', 'https://apikarminecorp.tomherault.fr/images/2.jpg', 'haut', NULL, 'L', 1, 15),
-(2, 'robe', 'https://apikarminecorp.tomherault.fr/images/8.jpg', 'bas', 1, 'XS', 2, 26),
-(3, 'pantalon', 'https://apikarminecorp.tomherault.fr/images/3.jpg', 'bas', NULL, 'M', 3, 12);
+(1, 'pull', 'http://localhost:8000/images/2.jpg', 'haut', NULL, 'L', 1, 15),
+(2, 'robe', 'http://localhost:8000/images/8.jpg', 'bas', 1, 'XS', 2, 26),
+(3, 'pantalon', 'http://localhost:8000/images/3.jpg', 'bas', NULL, 'M', 3, 12);
 
 --
 -- Indexes for dumped tables
