@@ -1,0 +1,33 @@
+.lmf-vetement-list {
+    list-style-type: none;
+    padding: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.lmf-vetement-item {
+    border: solid 2px black;
+    border-radius: 10px;
+    height: 180px;
+    width: 180px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+.lmf-sales {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    font-weight: 500;
+    color: white;
+    padding: 5px 10px;
+    background-color: #e69946;
+}
+.lmf-button-Add {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+}

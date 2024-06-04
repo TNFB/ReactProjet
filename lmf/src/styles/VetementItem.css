@@ -1,0 +1,17 @@
+.lmf-vetement-item-cover {
+    height: 80px;
+    width: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+.lmf-vetement-item-price {
+    border-radius: 20px 20px 0px 20px;
+    background-color: #e69946;
+    color: white;
+    padding: 10px;
+    right: 0;
+    top: 0;
+    font-weight: 500;
+}
+    
+    

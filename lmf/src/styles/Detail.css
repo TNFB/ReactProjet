@@ -1,0 +1,55 @@
+.detail-container {    
+    padding: 20px;
+    text-align: left;
+  }
+  .detail-heading {
+    font-size: 28px;
+    margin-bottom: 20px;
+    background-color: #117380; /* Couleur d'arrière-plan verte */
+    color: white; /* Couleur du texte blanc pour contraster avec le fond vert */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 10px 20px; /* Espacement intérieur pour le texte */
+  }
+  
+  .article-id {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 20px;
+  }  
+
+  .form-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .form-button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .form-button:hover {
+    background-color: #45a049;
+  }
