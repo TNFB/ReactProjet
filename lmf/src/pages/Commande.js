@@ -22,6 +22,11 @@ function Commande() {
             alert('Veuillez renseigner vos informations avant de passer commande');
             window.location.href = '/profile';
         }
+
+        if (!nom || !prenom || !adresse) {
+            alert('Veuillez vous connecter pour passer commande');
+            window.location.href = '/login';
+        }
     };
 
     const handleValidate = async (commande) => {

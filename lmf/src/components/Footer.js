@@ -13,14 +13,14 @@ function Footer() {
     return (
         <footer className='lmf-footer'>
             <div className='lmf-footer-social-media'>
-                <a href='https://www.facebook.com/lmf' target='_blank' rel='noreferrer'>
+                <a href={'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent("http://lemalfringue.fr/" + window.location.pathname)} target='_blank' rel='noreferrer'>
                     <img 
                         src='https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg' 
                         alt='facebook' 
                         className='lmf-footer-icon'
                     />
                 </a>
-                <a href='https://x.com/lmf' target='_blank' rel='noreferrer'>
+                <a href={'https://x.com/intent/tweet?text=' + encodeURIComponent("J'ai trouvé ça chez LeMalFringué.fr ! C'est incroyable ?") + encodeURIComponent("http://lemalfringue.fr" + window.location.pathname)} target='_blank' rel='noreferrer'>
                     <img 
                         src='https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg' 
                         alt='x.com' 

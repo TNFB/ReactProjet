@@ -61,6 +61,7 @@ function ModifyProfile() {
             <h2 className="modify-profile-title">Profil Utilisateur</h2>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <form className="modify-profile-form" onSubmit={handleSubmit}>
+                <p className="modify-profile-label">Email</p>
                 <input
                     className="modify-profile-input"
                     type="email"
@@ -68,6 +69,7 @@ function ModifyProfile() {
                     value={modify_email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
+                <p className="modify-profile-label">Mot de passe</p>
                 <input
                     className="modify-profile-input"
                     type="password"
@@ -75,6 +77,7 @@ function ModifyProfile() {
                     value={modify_password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <p className="modify-profile-label">Nom et prénom</p>
                 <input
                     className="modify-profile-input"
                     type="text"
@@ -89,6 +92,7 @@ function ModifyProfile() {
                     value={modify_prenom}
                     onChange={(e) => setPrenom(e.target.value)}
                 />
+                <p className="modify-profile-label">Adresse</p>
                 <input
                     className="modify-profile-input"
                     type="text"

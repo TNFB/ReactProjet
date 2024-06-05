@@ -29,7 +29,7 @@ function GestionArticles() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const article = { name, cover, category, isSpecialOffer, confort, taille, price, video };
+        const article = { name, cover, category, isSpecialOffer, price, confort, taille, video };
         const response = await fetch('http://localhost:3002/gestionArticles/', {
             method: 'POST',
             headers: {
