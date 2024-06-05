@@ -38,7 +38,7 @@ function ShoppingList({ cart, updateCart }) {
             <ul className='lmf-vetement-list'>
                 {freelancersList.map((vetement) => (
                     <li className='lmf-vetement-item'>
-                        {vetement.isSpecialOffer && <div className='lmf-sales'>Soldes</div>}
+                        {vetement.isSpecialOffer === 1 && <div className='lmf-sales'>Soldes</div>}
                         <VetementItem
                             id={vetement.id}
                             cover={vetement.cover}

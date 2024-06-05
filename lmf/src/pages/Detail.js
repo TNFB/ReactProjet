@@ -122,12 +122,16 @@ function Detail() {
                     <h2 >Confort : {detailVetement.confort}</h2>
                     <h2 >Taille : {detailVetement.taille}</h2>
                     <button onClick={() => setIsEditing(true)}>Modifier</button>
-                    <h2 >Avis :</h2>
-                    <ul>
-                        {listAvis.map((avis) => (
-                            <li key={avis.idAvis}>{avis.prenom} a commenté : {avis.avis}</li>
-                        ))}
-                    </ul>
+                    {listAvis.length > 0 && (
+                        <div>
+                            <h2 >Avis :</h2>
+                            <ul>
+                                {listAvis.map((avis) => (
+                                    <li key={avis.idAvis}>{avis.prenom} a commenté : {avis.avis}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
                     <form onSubmit={handleSubmitAvis}>
                         <input type="text" placeholder="Votre avis" value={envoiAvis} onChange={(e) => setEnvoiAvis(e.target.value)} />

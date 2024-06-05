@@ -12,6 +12,8 @@ function GestionArticles() {
     const [category, setCategory] = useState('');
     const [isSpecialOffer, setIsSpecialOffer] = useState(false);
     const [price, setPrice] = useState('');
+    const [confort, setConfort] = useState('');
+    const [taille, setTaille] = useState('');
     const [articles, setArticles] = useState([]);
     const [editId, setEditId] = useState(null);
 
@@ -23,8 +25,8 @@ function GestionArticles() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const article = { name, cover, category, isSpecialOffer, price };
-        const response = await fetch('http://localhost:3002/', {
+        const article = { name, cover, category, isSpecialOffer, confort, taille, price };
+        const response = await fetch('http://localhost:3002/gestionArticles/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -45,10 +47,12 @@ function GestionArticles() {
         setCategory(article.category);
         setIsSpecialOffer(article.isSpecialOffer);
         setPrice(article.price);
+        setConfort(article.confort);
+        setTaille(article.taille);
     };
 
     const handleSave = async (id) => {
-        const article = { name, cover, category, isSpecialOffer, price };
+        const article = { name, cover, category, isSpecialOffer, price, confort, taille};
         const response = await fetch(`http://localhost:3002/${id}`, {
             method: 'PUT',
             headers: {
@@ -78,14 +82,17 @@ function GestionArticles() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            {!editId && <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Nom" value={name} onChange={e => setName(e.target.value)} required />
                 <input type="text" placeholder="Cover URL" value={cover} onChange={e => setCover(e.target.value)} />
                 <input type="text" placeholder="Catégorie" value={category} onChange={e => setCategory(e.target.value)} />
                 <input type="checkbox" checked={isSpecialOffer} onChange={e => setIsSpecialOffer(e.target.checked)} />
                 <input type="number" placeholder="Prix" value={price} onChange={e => setPrice(e.target.value)} />
+                <input type="text" placeholder="Confort" value={confort} onChange={e => setConfort(e.target.value)} />
+                <input type="text" placeholder="Taille" value={taille} onChange={e => setTaille(e.target.value)} />
                 <button type="submit">Ajouter</button>
             </form>
+            }
             {articles.map(article => (
                 <div key={article.id}>
                     {editId === article.id ? (
@@ -95,15 +102,19 @@ function GestionArticles() {
                             <input type="text" value={category} onChange={e => setCategory(e.target.value)} />
                             <input type="checkbox" checked={isSpecialOffer} onChange={e => setIsSpecialOffer(e.target.checked)} />
                             <input type="number" value={price} onChange={e => setPrice(e.target.value)} />
+                            <input type="text" value={confort} onChange={e => setConfort(e.target.value)} />
+                            <input type="text" value={taille} onChange={e => setTaille(e.target.value)} />
                             <button onClick={() => handleSave(article.id)}>Enregistrer</button>
                         </>
                     ) : (
                         <>
-                            <p>{article.name}</p>
+                            <p>Nom : {article.name}</p>
                             <img src={article.cover} alt="Cover" />
-                            <p>{article.category}</p>
-                            <p>{article.isSpecialOffer ? 'Oui' : 'Non'}</p>
-                            <p>{article.price}</p>
+                            <p>Catégorie : {article.category}</p>
+                            <p>Promo : {article.isSpecialOffer ? 'Oui' : 'Non'}</p>
+                            <p>Prix : {article.price}</p>
+                            <p>Confort : {article.confort}</p>
+                            <p>Taille : {article.taille}</p>
                             <button onClick={() => handleEdit(article)}>Modifier</button>
                             <button onClick={() => handleDelete(article.id)}>Supprimer</button>
                         </>

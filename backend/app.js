@@ -298,5 +298,31 @@ app.post('/suivi/:id', async (req, res, next) => {
     });
 });
 
+// Route POST pour ajouter un article
+app.post('/gestionArticles/', (req, res, next) => {
+    const { name, cover, category, isSpecialOffer, price } = req.body;
+    connection.query(
+        'INSERT INTO vetement (name, cover, category, isSpecialOffer, price) VALUES (?, ?, ?, ?, ?)', [name, cover, category, isSpecialOffer, price], (error, results) => {
+            if (error) {
+                console.error('Erreur insertion article dans la base de données :', error);
+                res.status(500).json({ error: 'Erreur serveur lors ajout article.' });
+            } else {
+                res.status(201).json({ message: 'Article ajouté avec succès.' });
+            }
+        });
+});
+
+// Route pour supprimer un article
+app.delete('/:id', async (req, res, next) => {
+    const vetementId = req.params.id;
+    connection.query('DELETE FROM vetement WHERE id = ?', [vetementId], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de la requête DELETE :', error);
+            res.status(500).json({ error: 'Erreur serveur lors de la requête DELETE.' });
+        } else {
+            res.status(200).json({ message: 'Article supprimé avec succès.' });
+        }
+    });
+});
 
 module.exports = app;
