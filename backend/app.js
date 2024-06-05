@@ -228,7 +228,7 @@ app.post('/modifyProfile/:id', (req, res, next) => {
 // Affichage des avis
 app.get('/avis/:id', async (req, res, next) => {
     const idArticle = req.params.id;
-    connection.query('SELECT * FROM avis WHERE idArticle = ?', [idArticle], (error, results) => {
+    connection.query('SELECT a.idArticle, a.avis, u.prenom FROM avis a JOIN utilisateur u ON a.idUser = u.id WHERE a.idArticle = ?', [idArticle], (error, results) => {
         if (error) {
             console.error('Erreur lors de la requête SELECT :', error);
             res.status(500).json({ error: 'Erreur serveur lors de la requête SELECT.' });

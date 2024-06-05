@@ -125,7 +125,7 @@ function Detail() {
                     <h2 >Avis :</h2>
                     <ul>
                         {listAvis.map((avis) => (
-                            <li key={avis.idAvis}>{avis.idUser} a commenté : {avis.avis}</li>
+                            <li key={avis.idAvis}>{avis.prenom} a commenté : {avis.avis}</li>
                         ))}
                     </ul>
                     {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
