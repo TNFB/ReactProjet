@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function ModifyProfile() {
     // vous pouvez récupérer l'ID de l'utilisateur à partir du stockage local
     const userId = localStorage.getItem('userId');
@@ -54,6 +56,7 @@ function ModifyProfile() {
 
     return (
         <div>
+            <Banner />
             <h2>Profil Utilisateur</h2>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <form onSubmit={handleSubmit}>
@@ -69,6 +72,7 @@ function ModifyProfile() {
                 />
                 <button type="submit">Modifier</button>
             </form>
+            <Footer />
         </div>
     );
 }

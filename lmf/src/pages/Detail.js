@@ -1,7 +1,8 @@
 import '../styles/Detail.css'
-import Banner from '../components/Banner'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function Detail() {
     const { idArticle } = useParams()
     const [detailVetement, setData] = useState({})
@@ -82,16 +83,16 @@ function Detail() {
     }
     const [envoiAvis, setEnvoiAvis] = useState("");
     const [errorMessage, setErrorMessage] = useState(''); // Stocke les messages d'erreur à afficher.
-    const handleSubmitAvis = async (e) => { 
+    const handleSubmitAvis = async (e) => {
         e.preventDefault();
         try {
-            const url =`http://localhost:3002/avis/${idArticle}`;
+            const url = `http://localhost:3002/avis/${idArticle}`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({envoiAvis, userId})
+                body: JSON.stringify({ envoiAvis, userId })
             });
             if (!response.ok) {// Si la réponse n'est pas OK, gérer l'erreur
                 const errorMessage = await response.text();
@@ -100,7 +101,7 @@ function Detail() {
             }
             const data = await response.json(); // on récupère les données du json si ok
             console.log(data);
-            window.location.href = '/detail/'+idArticle;
+            window.location.href = '/detail/' + idArticle;
         } catch (error) {
             console.error('Erreur lors de la modification :', error);
             setErrorMessage('Erreur'); // Affiche message erreur à utilisateur
@@ -110,14 +111,26 @@ function Detail() {
     return (
         <div className="detail-container">
             <Banner />
-            <h1 className="detail-heading">Détail de mon vêtement</h1>
-            <h2 className="article-id">id Article {idArticle}</h2>
+            <h1 className="detail-heading">Détail du vêtement</h1>
             {!isEditing ? (
                 <div>
                     <h1 >{detailVetement.name}</h1>
                     <img src={detailVetement.cover}
                         alt={`${detailVetement.name} cover`}
                     />
+                    {detailVetement.video && (
+                        <iframe
+                            width="560"
+                            height="315"
+                            src={detailVetement.video + "?autoplay=1"}
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            >
+                        </iframe>
+                    )}
                     <h2 >Prix : {detailVetement.price} euros</h2>
                     <h2 >Confort : {detailVetement.confort}</h2>
                     <h2 >Taille : {detailVetement.taille}</h2>
@@ -147,6 +160,7 @@ function Detail() {
                     <button className="form-button" onClick={() => setIsEditing(false)}>Annuler</button>
                 </div>
             )}
+            <Footer />
         </div>
     )
 }

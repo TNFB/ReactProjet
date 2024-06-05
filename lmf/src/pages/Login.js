@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function Login() {
     useEffect(() => { // Vérifiez si un token est déjà stocké localement
         const token = localStorage.getItem('token');
@@ -55,6 +57,7 @@ function Login() {
     // selon la valeur de isSignup , Le rendu du composant affiche un formulaire pour l'inscription ou la connexion.Ainsi qu'un bouton pour basculer entre les deux modes. Il affiche également un message d'erreur errorMessage si une erreur survient lors de la soumission du formulaire. 
     return (
         <div>
+            <Banner />
             <h2>{isSignup ? 'Inscription' : 'Connexion'}</h2>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <form onSubmit={handleSubmit}>
@@ -66,6 +69,7 @@ function Login() {
             </form>
             <p>{isSignup ? 'Vous avez déjà un compte ?' : 'Vous n\'avez pas de compte ?'}</p>
             <button onClick={() => setIsSignup(!isSignup)}>{isSignup ? 'Se connecter' : 'S\'inscrire'}</button>
+            <Footer />
         </div>
     );
 }

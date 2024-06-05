@@ -1,4 +1,6 @@
 import React from 'react';
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function Profile() {
     // vous pouvez récupérer l'ID de l'utilisateur à partir du stockage local
     const userId = localStorage.getItem('userId');
@@ -35,6 +37,7 @@ function Profile() {
 
     return (
         <div>
+            <Banner />
             <h2>Profil Utilisateur</h2>
             <p>ID de l'utilisateur : {userId}</p>
             <p>Email de l'utilisateur : {userEmail}</p>
@@ -45,6 +48,7 @@ function Profile() {
             <button onClick={handleLogout}>Déconnexion</button>
             <button onClick={handleModifyProfile}>Modifier mon profil</button>
             <a href="mailto:support@lmf.fr">Besoin d'aide ?</a>
+            <Footer />
         </div>
     );
 }

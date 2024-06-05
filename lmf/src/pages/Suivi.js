@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function Suivi() {
 
     const [idCommande, setidCommande] = useState(0);
@@ -31,6 +33,7 @@ function Suivi() {
 
     return (
         <div>
+            <Banner />
             <h2>Suivi de commande</h2>
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
             <form onSubmit={handleSubmit}>
@@ -41,6 +44,7 @@ function Suivi() {
             <h2>Informations</h2>
             <p>Commande n°{idCommande}</p>
             {!errorMessage && <p>Etat : {data.etat}</p>}
+            <Footer />
         </div>
     );
 }

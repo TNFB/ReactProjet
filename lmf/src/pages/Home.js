@@ -1,7 +1,7 @@
 import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 import Cart from '../components/Cart'
 import ShoppingList from '../components/ShoppingList'
-import Footer from '../components/Footer'
 import { useState } from 'react'
 function Home() {
   const [cart, updateCart] = useState([])

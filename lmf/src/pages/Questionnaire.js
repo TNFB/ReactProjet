@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { useState, useEffect, useContext } from 'react'
 import { QuestionnaireContext } from '../context'
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 
 
 function Questionnaire() {
@@ -30,6 +32,7 @@ function Questionnaire() {
 
     return (
         <div>
+            <Banner />
             <h1>Questionnaire sur votre expérience d'achat</h1>
             <h2>Question {questionNumber}</h2>
             <span>{surveyData[questionNumber]}</span>
@@ -51,6 +54,7 @@ function Questionnaire() {
             ) : (
                 <Link to={`/questionnaire/${nextQuestionNumber}`}>Suivant</Link>
             )}
+            <Footer />
         </div>
     )
 }

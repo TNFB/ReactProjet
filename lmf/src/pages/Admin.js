@@ -1,4 +1,6 @@
 import React from 'react';
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function Admin() {
     // vous pouvez récupérer l'ID de l'utilisateur à partir du stockage local
     const userId = localStorage.getItem('userId');
@@ -31,6 +33,7 @@ function Admin() {
 
     return (
         <div>
+            <Banner />
             <h2>Profil Administrateur</h2>
             <p>ID de l'administrateur : {userId}</p>
             <p>Email de l'administrateur : {userEmail}</p>
@@ -39,6 +42,7 @@ function Admin() {
             <p>Prénom : {prenom}</p>
             <p>Adresse : {adresse}</p>
             <button onClick={handleLogout}>Déconnexion</button>
+            <Footer />
         </div>
     );
 }

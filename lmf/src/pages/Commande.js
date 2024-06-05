@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-
+import Banner from '../components/Banner'
+import Footer from '../components/Footer'
 function Commande() {
     const commande = JSON.parse(localStorage.getItem('cart'));
 
@@ -57,6 +58,7 @@ function Commande() {
 
     return (
         <div>
+            <Banner />
             <h2>Commande</h2>
             <ul>
                 {commande.map(({ name, price, amount }, index) => (
@@ -74,6 +76,7 @@ function Commande() {
                 <p>Adresse : {localStorage.getItem('adresse')}</p>
             </div>
             <button onClick={() => handleValidate(commande)}>Valider la commande</button>
+            <Footer />
         </div>
     );
 }
