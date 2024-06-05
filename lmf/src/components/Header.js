@@ -12,6 +12,7 @@ function Header() {
         if (role === "user" || role === "admin") {
             setisLogged(true)
         }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
     
@@ -44,7 +45,12 @@ function Header() {
             &nbsp;
             &nbsp;
             &nbsp;
-            {role === "user" && <Link to="/commande">Commande</Link>}
+            <Link to="/suivi">Suivi</Link>
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            &nbsp;
             {role === "admin" && <Link to="/gestionArticles">Gestion Articles</Link>}
         </nav>
     )

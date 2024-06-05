@@ -109,7 +109,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     try {
         // req.file contient les informations sur le fichier téléchargé
         if (req.file) { // Si true, le fichier a été téléchargé avec succès
-            const imageUrl = `https://backendkarminecorp.tomherault.fr/images/${req.file.filename}`;
+            const imageUrl = `http://localhost:3002/images/${req.file.filename}`;
             // Mise à jour du champ 'cover' dans MySQL avec la nouvelle URL de l'image
             const vetementId = req.body.vetementId; // Assurez-vous d'envoyer l'ID du vêtement avec la requête POST (côté Front)
             const updateQuery = 'UPDATE vetement SET cover = ? WHERE id = ?';
@@ -184,7 +184,7 @@ app.post('/login', (req, res, next) => {
                             const prenom = results[0].prenom; // 'prenom' est la colonne contenant le prénom de l'utilisateur
                             const adresse = results[0].adresse; // 'adresse' est la colonne contenant l'adresse de l'utilisateur
                             const token = jwt.sign({ userId }, 'votre_clé_secrète', { expiresIn: '24h' }); // Créez un jeton JWT
-                            res.status(200).json({ message: 'Authentification réussie.', userId: userId , token: token, userEmail: email, role: role, nom: nom, prenom: prenom, adresse: adresse});
+                            res.status(200).json({ message: 'Authentification réussie.', userId: userId, token: token, userEmail: email, role: role, nom: nom, prenom: prenom, adresse: adresse });
                         } else {
                             res.status(401).json({ error: 'Identifiants incorrects.' });
                         }
@@ -246,7 +246,7 @@ app.get('/avis/:id', async (req, res, next) => {
 // Route pour ajouter un avis dans la BDD
 app.post('/avis/:id', (req, res, next) => {
     const idArticle = req.params.id;
-    const {envoiAvis, userId} = req.body;
+    const { envoiAvis, userId } = req.body;
     connection.query(
         'INSERT INTO avis (idArticle, avis, idUser) VALUES (?, ?, ?)', [idArticle, envoiAvis, userId], (error, results) => {
             if (error) {
@@ -254,6 +254,28 @@ app.post('/avis/:id', (req, res, next) => {
                 res.status(500).json({ error: 'Erreur serveur lors ajout avis.' });
             } else {
                 res.status(201).json({ message: 'Avis ajouté avec succès.' });
+            }
+        });
+});
+
+// Route pour ajouter une commande et retourner son id
+app.post('/commande/', (req, res, next) => {
+    const { userID, commande } = req.body;
+    connection.query(
+        'INSERT INTO commande (contenu, userID) VALUES (?, ?);', [JSON.stringify(commande), userID], (error, results) => {
+            if (error) {
+                console.error('Erreur insertion commande dans la base de données :', error);
+                res.status(500).json({ error: 'Erreur serveur lors ajout commande.' });
+            } else {
+                connection.query(
+                    'SELECT idCommande,etat FROM commande WHERE idCommande = LAST_INSERT_ID();', (error, results) => {
+                        if (error) {
+                            console.error('Erreur récupération commande dans la base de données :', error);
+                            res.status(500).json({ error: 'Erreur serveur lors recup commande.' });
+                        } else {
+                            res.status(201).json({ results });
+                        }
+                    });
             }
         });
 });

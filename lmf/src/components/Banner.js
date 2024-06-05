@@ -1,11 +1,11 @@
-import logo from '../assets/logo.jpg'
+import logo from '../assets/logo.jpeg'
 import '../styles/Banner.css';
 function Banner() {
-    const title = 'La maison fashion'
+    const title = 'Le Mal Fringué'
     return (
         <div className='lmf-banner'>
             <img src={logo}
-                alt='La maison fashion'
+                alt='Le Mal Fringué'
                 className='lmf-logo'
             />
             <h1 className='lmf-title'>{title}</h1>
