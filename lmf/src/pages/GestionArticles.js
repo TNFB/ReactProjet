@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 function GestionArticles() {
+    const role = localStorage.getItem('role');
+
+    if (!(role === "user" || role === "admin")) {
+        window.location.href = '/login';
+    }
+
     const [name, setName] = useState('');
     const [cover, setCover] = useState('');
     const [category, setCategory] = useState('');

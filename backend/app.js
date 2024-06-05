@@ -144,7 +144,7 @@ app.post('/signup', (req, res, next) => {
                 res.status(500).json({ error: 'Erreur serveur lors création utilisateur.' });
             } else {
                 connection.query(
-                    'INSERT INTO utilisateur (email, password, role) VALUES (?, ?, "user")', [email, hashedPassword], (error, results) => {
+                    'INSERT INTO utilisateur (email, password) VALUES (?, ?)', [email, hashedPassword], (error, results) => {
                         if (error) {
                             console.error('Erreur insertion utilisateur dans la base de données :', error);
                             res.status(500).json({ error: 'Erreur serveur lors création utilisateur.' });
@@ -257,5 +257,7 @@ app.post('/avis/:id', (req, res, next) => {
             }
         });
 });
+
+
 
 module.exports = app;

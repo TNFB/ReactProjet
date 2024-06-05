@@ -27,21 +27,26 @@ function Login() {
                 throw new Error(errorMessage);
             }
             const data = await response.json(); // on récupère les données du json si ok 
-            const userId = data.userId; // on récupère le userId
-            localStorage.setItem('userId', userId); // Stocke ID de l'utilisateur dans le stockage local
-            const token = data.token; // Stocker le token d'authentification dans le stockage local
-            localStorage.setItem('token', token); // Stocker également l'ID de l'utilisateur dans le stockage local
-            const userEmail = data.userEmail; // on récupère l'email de l'utilisateur
-            localStorage.setItem('userEmail', userEmail); // Stocke l'email de l'utilisateur dans le stockage local
-            const role = data.role; // on récupère le role de l'utilisateur
-            localStorage.setItem('role', role); // Stocke le rôle de l'utilisateur dans le stockage local
-            const nom = data.nom; // on récupère le nom de l'utilisateur
-            localStorage.setItem('nom', nom); // Stocke le nom de l'utilisateur dans le stockage local
-            const prenom = data.prenom; // on récupère le prénom de l'utilisateur
-            localStorage.setItem('prenom', prenom); // Stocke le prénom de l'utilisateur dans le stockage local
-            const adresse = data.adresse; // on récupère l'adresse de l'utilisateur
-            localStorage.setItem('adresse', adresse); // Stocke l'adresse de l'utilisateur dans le stockage local
-            window.location.href = '/profile'; // Redirection vers une page de gestion du profil
+            if (isSignup) {
+                window.location.href = '/login'; // Redirection vers une page de connexion
+            } else {
+                const userId = data.userId; // on récupère le userId
+                localStorage.setItem('userId', userId); // Stocke ID de l'utilisateur dans le stockage local
+                const token = data.token; // Stocker le token d'authentification dans le stockage local
+                localStorage.setItem('token', token); // Stocker également l'ID de l'utilisateur dans le stockage local
+                const userEmail = data.userEmail; // on récupère l'email de l'utilisateur
+                localStorage.setItem('userEmail', userEmail); // Stocke l'email de l'utilisateur dans le stockage local
+                const role = data.role; // on récupère le role de l'utilisateur
+                localStorage.setItem('role', role); // Stocke le rôle de l'utilisateur dans le stockage local
+                const nom = data.nom; // on récupère le nom de l'utilisateur
+                localStorage.setItem('nom', nom); // Stocke le nom de l'utilisateur dans le stockage local
+                const prenom = data.prenom; // on récupère le prénom de l'utilisateur
+                localStorage.setItem('prenom', prenom); // Stocke le prénom de l'utilisateur dans le stockage local
+                const adresse = data.adresse; // on récupère l'adresse de l'utilisateur
+                localStorage.setItem('adresse', adresse); // Stocke l'adresse de l'utilisateur dans le stockage local
+                window.location.href = '/profile'; // Redirection vers une page de profil
+            }
+
         } catch (error) {
             console.error('Erreur lors de la connexion :', error);
             setErrorMessage('Identifiants incorrects. Veuillez réessayer.'); // Affiche message erreur à utilisateur
