@@ -12,6 +12,7 @@ import ModifyProfile from './pages/ModifyProfile';
 import Commande from './pages/Commande';
 import GestionArticles from './pages/GestionArticles';
 import Confirmation from './pages/Confirmation';
+import Suivi from './pages/Suivi';
 
 import { QuestionnaireProvider } from './context'
 
@@ -60,6 +61,9 @@ root.render(
         </Route>
         <Route path="/confirmation">
           <Confirmation />
+        </Route>
+        <Route path="/suivi">
+          <Suivi />
         </Route>
       </QuestionnaireProvider>
 

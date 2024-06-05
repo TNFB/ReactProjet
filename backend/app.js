@@ -280,6 +280,23 @@ app.post('/commande/', (req, res, next) => {
         });
 });
 
+// Route pour suivre une commande
+app.post('/suivi/:id', async (req, res, next) => {
+    const idCommande = req.params.id;
+    const userID = req.body.userId;
+    connection.query('SELECT * FROM commande WHERE idCommande = ? AND userID = ?', [idCommande, userID], (error, results) => {
+        if (error) {
+            console.error('Erreur lors de la requête SELECT :', error);
+            res.status(500).json({ error: 'Erreur serveur lors de la requête SELECT.' });
+        } else {
+            if (results.length > 0) {
+                res.status(200).json(results[0]);
+            } else {
+                res.status(404).json({ error: 'Aucune commande trouvée avec cet ID.' });
+            }
+        }
+    });
+});
 
 
 module.exports = app;
