@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import '../styles/Header.css'
 
 function Header() {
 
@@ -16,10 +17,10 @@ function Header() {
       }, []);
 
     
-    
+    const navClass = isLogged ? "logged-in" : "logged-out";
 
     return (
-        <nav>
+        <nav className={navClass}>
             &nbsp;
             &nbsp;
             &nbsp;

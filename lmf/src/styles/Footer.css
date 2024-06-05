@@ -1,25 +1,38 @@
+/* Footer.css */
 .lmf-footer {
-    color: black;
-    padding: 32px;
-    border-top: solid 3px black;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: center;
-    font-weight: 500;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-top: 2px solid #ddd;
+    text-align: center;
 }
+
+.lmf-footer-social-media {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.lmf-footer-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    transition: transform 0.3s ease;
+}
+
+.lmf-footer-icon:hover {
+    transform: scale(1.1);
+}
+
 .lmf-footer-elem {
+    font-size: 18px;
+    color: #555;
     margin-bottom: 10px;
 }
 
-.social-media {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.social-media > a > img {
-    margin: 0 10px;
-    height: 50px;
-    width: 50px;
+.lmf-footer-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
 }

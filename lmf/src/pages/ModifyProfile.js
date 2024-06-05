@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Banner from '../components/Banner'
-import Footer from '../components/Footer'
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
+import '../styles/ModifyProfile.css';
+
 function ModifyProfile() {
-    // vous pouvez récupérer l'ID de l'utilisateur à partir du stockage local
+    // Retrieve user information from local storage
     const userId = localStorage.getItem('userId');
-    // Récupérer l'adresse e-mail de l'utilisateur à partir du stockage local
     const userEmail = localStorage.getItem('userEmail');
-    // Fonction pour afficher le role de l'utilisateur
     const role = localStorage.getItem('role');
     const nom = localStorage.getItem('nom');
     const prenom = localStorage.getItem('prenom');
@@ -16,29 +16,30 @@ function ModifyProfile() {
         window.location.href = '/login';
     }
 
-    const [modify_email, setEmail] = useState(userEmail); // Etat qui Stocke l'email de l'utilisateur
-    const [modify_password, setPassword] = useState("azerty"); // Etat qui Stocke le mot de passe de l'utilisateur.
-    const [modify_nom, setNom] = useState(nom); // Etat qui Stocke le nom de l'utilisateur
-    const [modify_prenom, setPrenom] = useState(prenom); // Etat qui Stocke le prénom de l'utilisateur
-    const [modify_adresse, setAdresse] = useState(adresse); // Etat qui Stocke l'adresse de l'utilisateur
-    const [errorMessage, setErrorMessage] = useState(''); // Stocke les messages d'erreur à afficher.
-    const handleSubmit = async (e) => { 
+    const [modify_email, setEmail] = useState(userEmail);
+    const [modify_password, setPassword] = useState("azerty");
+    const [modify_nom, setNom] = useState(nom);
+    const [modify_prenom, setPrenom] = useState(prenom);
+    const [modify_adresse, setAdresse] = useState(adresse);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url =`http://localhost:3002/modifyProfile/${userId}`;
+            const url = `http://localhost:3002/modifyProfile/${userId}`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ modify_email, modify_password, modify_nom, modify_prenom, modify_adresse})
+                body: JSON.stringify({ modify_email, modify_password, modify_nom, modify_prenom, modify_adresse })
             });
-            if (!response.ok) {// Si la réponse n'est pas OK, gérer l'erreur
+            if (!response.ok) {
                 const errorMessage = await response.text();
                 setErrorMessage(errorMessage);
                 throw new Error(errorMessage);
             }
-            const data = await response.json(); // on récupère les données du json si ok 
+            const data = await response.json();
             console.log(data);
             localStorage.removeItem('token');
             localStorage.removeItem('userId');
@@ -50,30 +51,56 @@ function ModifyProfile() {
             window.location.href = '/';
         } catch (error) {
             console.error('Erreur lors de la modification :', error);
-            setErrorMessage('Erreur'); // Affiche message erreur à utilisateur
+            setErrorMessage('Erreur');
         }
     };
 
     return (
-        <div>
+        <div className="modify-profile-container">
             <Banner />
-            <h2>Profil Utilisateur</h2>
-            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-            <form onSubmit={handleSubmit}>
-                <input type="email" placeholder="Email" value={modify_email} onChange={(e) => setEmail(e.target.value)}
+            <h2 className="modify-profile-title">Profil Utilisateur</h2>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <form className="modify-profile-form" onSubmit={handleSubmit}>
+                <input
+                    className="modify-profile-input"
+                    type="email"
+                    placeholder="Email"
+                    value={modify_email}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
-                <input type="password" placeholder="Mot de passe" value={modify_password} onChange={(e) =>
-                    setPassword(e.target.value)} />
-                <input type="text" placeholder="Nom" value={modify_nom} onChange={(e) => setNom(e.target.value)}
+                <input
+                    className="modify-profile-input"
+                    type="password"
+                    placeholder="Mot de passe"
+                    value={modify_password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
-                <input type="text" placeholder="Prénom" value={modify_prenom} onChange={(e) => setPrenom(e.target.value)}
+                <input
+                    className="modify-profile-input"
+                    type="text"
+                    placeholder="Nom"
+                    value={modify_nom}
+                    onChange={(e) => setNom(e.target.value)}
                 />
-                <input type="text" placeholder="Adresse" value={modify_adresse} onChange={(e) => setAdresse(e.target.value)}
+                <input
+                    className="modify-profile-input"
+                    type="text"
+                    placeholder="Prénom"
+                    value={modify_prenom}
+                    onChange={(e) => setPrenom(e.target.value)}
                 />
-                <button type="submit">Modifier</button>
+                <input
+                    className="modify-profile-input"
+                    type="text"
+                    placeholder="Adresse"
+                    value={modify_adresse}
+                    onChange={(e) => setAdresse(e.target.value)}
+                />
+                <button className="modify-profile-button" type="submit">Modifier</button>
             </form>
             <Footer />
         </div>
     );
 }
+
 export default ModifyProfile;

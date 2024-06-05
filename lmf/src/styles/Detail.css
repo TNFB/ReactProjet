@@ -1,55 +1,145 @@
-.detail-container {    
-    padding: 20px;
-    text-align: left;
-  }
-  .detail-heading {
-    font-size: 28px;
-    margin-bottom: 20px;
-    background-color: #117380; /* Couleur d'arrière-plan verte */
-    color: white; /* Couleur du texte blanc pour contraster avec le fond vert */
-    border-radius: 10px; /* Coins arrondis */
-    padding: 10px 20px; /* Espacement intérieur pour le texte */
-  }
-  
-  .article-id {
-    font-size: 18px;
-    color: #888;
-    margin-bottom: 20px;
-  }  
+/* Detail.css */
+.detail-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  max-width: 800px;
+  margin: auto;
+}
 
-  .form-container {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  .form-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-  }
-  
-  .form-input {
-    width: 100%;
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  .form-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .form-button:hover {
-    background-color: #45a049;
-  }
+.detail-heading {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.detail-content {
+  text-align: center;
+}
+
+.detail-name {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.detail-cover {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.detail-price, .detail-confort, .detail-taille {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.detail-edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.detail-edit-button:hover {
+  background-color: #0056b3;
+}
+
+.detail-avis {
+  margin-top: 20px;
+}
+
+.detail-avis-title {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.detail-avis-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.detail-avis-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.detail-avis-form {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.detail-avis-input {
+  width: 80%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.detail-avis-submit {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.detail-avis-submit:hover {
+  background-color: #218838;
+}
+
+.form-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.form-label {
+  font-size: 16px;
+  color: #555;
+  margin-right: 10px;
+}
+
+.form-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.form-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.form-button:hover {
+  background-color: #0056b3;
+}

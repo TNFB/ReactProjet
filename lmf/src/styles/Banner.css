@@ -1,18 +1,20 @@
+/* Banner.css */
 .lmf-banner {
-    color: black;
-    padding: 32px;
-    border-bottom: solid 3px black;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-bottom: 2px solid #ddd;
 }
-.lmf-title {
-    padding-left: 32px;
-}
+
 .lmf-logo {
-    height: 200px;
-    width: 200px;
+    height: 80px;
+    margin-right: 20px;
 }
-    
-    
+
+.lmf-title {
+    font-size: 36px;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}

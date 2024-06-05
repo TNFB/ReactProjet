@@ -1,25 +1,27 @@
 import React from 'react';
-import Banner from '../components/Banner'
-import Footer from '../components/Footer'
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
+import '../styles/Admin.css';
+
 function Admin() {
-    // vous pouvez récupérer l'ID de l'utilisateur à partir du stockage local
+    // Retrieve user details from local storage
     const userId = localStorage.getItem('userId');
-    // Récupérer l'adresse e-mail de l'utilisateur à partir du stockage local
     const userEmail = localStorage.getItem('userEmail');
-    // Fonction pour afficher le role de l'utilisateur
     const role = localStorage.getItem('role');
     const nom = localStorage.getItem('nom');
     const prenom = localStorage.getItem('prenom');
     const adresse = localStorage.getItem('adresse');
 
+    // Redirect logic based on user role
     if (role === "user") {
         window.location.href = '/profile';
-    }else if (role !== "user" && role !== "admin") {
+    } else if (role !== "user" && role !== "admin") {
         window.location.href = '/login';
     }
 
+    // Logout function
     const handleLogout = () => {
-        // Supprimer le token JWT du stockage local lors de la déconnexion
+        // Remove user details from local storage
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem('userEmail');
@@ -27,23 +29,24 @@ function Admin() {
         localStorage.removeItem('nom');
         localStorage.removeItem('prenom');
         localStorage.removeItem('adresse');
-        // Redirige l'utilisateur vers la page de connexion après la déconnexion
+        // Redirect to login page
         window.location.href = '/login';
     };
 
     return (
-        <div>
+        <div className="admin-container">
             <Banner />
-            <h2>Profil Administrateur</h2>
-            <p>ID de l'administrateur : {userId}</p>
-            <p>Email de l'administrateur : {userEmail}</p>
-            <p>Rôle de l'administrateur : {role}</p>
-            <p>Nom : {nom}</p>
-            <p>Prénom : {prenom}</p>
-            <p>Adresse : {adresse}</p>
-            <button onClick={handleLogout}>Déconnexion</button>
+            <h2 className="admin-title">Profil Administrateur</h2>
+            <p className="admin-info">ID de l'administrateur : {userId}</p>
+            <p className="admin-info">Email de l'administrateur : {userEmail}</p>
+            <p className="admin-info">Rôle de l'administrateur : {role}</p>
+            <p className="admin-info">Nom : {nom}</p>
+            <p className="admin-info">Prénom : {prenom}</p>
+            <p className="admin-info">Adresse : {adresse}</p>
+            <button className="logout-button" onClick={handleLogout}>Déconnexion</button>
             <Footer />
         </div>
     );
 }
+
 export default Admin;

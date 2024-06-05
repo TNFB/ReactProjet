@@ -1,0 +1,68 @@
+/* GestionArticles.css */
+.gestion-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.gestion-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.gestion-form input,
+.gestion-form label {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.gestion-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.gestion-button:hover {
+    background-color: #0056b3;
+}
+
+.articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.article-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 45%;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.article-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}

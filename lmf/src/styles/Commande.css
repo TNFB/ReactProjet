@@ -1,0 +1,73 @@
+/* Commande.css */
+.commande-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: auto;
+}
+
+.commande-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.commande-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.commande-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.commande-total {
+    font-size: 18px;
+    color: #333;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.commande-info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.commande-info-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.commande-info-detail {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.commande-button {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.commande-button:hover {
+    background-color: #0056b3;
+}

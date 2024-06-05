@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
-import Banner from '../components/Banner'
-import Footer from '../components/Footer'
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
+import '../styles/Commande.css';
+
 function Commande() {
     const commande = JSON.parse(localStorage.getItem('cart'));
 
@@ -48,7 +50,7 @@ function Commande() {
         } else {
             alert('Erreur lors de l\'ajout de l\'article');
         }
-    }
+    };
 
     useEffect(() => {
         verifyCommande();
@@ -57,25 +59,27 @@ function Commande() {
     }, []);
 
     return (
-        <div>
+        <div className='commande-container'>
             <Banner />
-            <h2>Commande</h2>
-            <ul>
+            <h2 className='commande-title'>Commande</h2>
+            <ul className='commande-list'>
                 {commande.map(({ name, price, amount }, index) => (
-                    <div>
+                    <li key={index} className='commande-item'>
                         {name} {price}€ x {amount}
-                    </div>
+                    </li>
                 ))}
             </ul>
-            <p>Total : {commande.reduce(
-                (acc, vetementType) => acc + vetementType.amount * vetementType.price, 0)}€</p>
-            <div>
-                <h2>Informations de livraison</h2>
-                <p>Nom : {localStorage.getItem('nom')}</p>
-                <p>Prénom : {localStorage.getItem('prenom')}</p>
-                <p>Adresse : {localStorage.getItem('adresse')}</p>
+            <p className='commande-total'>
+                Total : {commande.reduce(
+                    (acc, vetementType) => acc + vetementType.amount * vetementType.price, 0)}€
+            </p>
+            <div className='commande-info'>
+                <h2 className='commande-info-title'>Informations de livraison</h2>
+                <p className='commande-info-detail'>Nom : {localStorage.getItem('nom')}</p>
+                <p className='commande-info-detail'>Prénom : {localStorage.getItem('prenom')}</p>
+                <p className='commande-info-detail'>Adresse : {localStorage.getItem('adresse')}</p>
             </div>
-            <button onClick={() => handleValidate(commande)}>Valider la commande</button>
+            <button className='commande-button' onClick={() => handleValidate(commande)}>Valider la commande</button>
             <Footer />
         </div>
     );

@@ -1,0 +1,74 @@
+/* Login.css */
+.login-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.login-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-input {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.login-button {
+    width: 80%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.toggle-message {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.toggle-button {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-button:hover {
+    background-color: #218838;
+}

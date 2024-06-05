@@ -1,29 +1,32 @@
-import { useContext } from 'react'
-import { QuestionnaireContext } from '../context'
-import Banner from '../components/Banner'
-import Footer from '../components/Footer'
+import { useContext } from 'react';
+import { QuestionnaireContext } from '../context';
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
+import '../styles/Results.css';
+
 function formatQuestionList(reponse, index) {
-    let title = ''
-    reponse ? title = 'oui' : title = 'non' //si réponse vaut true, affiche oui
-    return "Réponse " + (index + 1) + " : " + title // affiche la réponse       
+    let title = reponse ? 'oui' : 'non';
+    return "Réponse " + (index + 1) + " : " + title;
 }
 
 function Results() {
-    const { reponses } = useContext(QuestionnaireContext)
-    //console.log(reponses)
-    const reponseValues = Object.values(reponses)
+    const { reponses } = useContext(QuestionnaireContext);
+    const reponseValues = Object.values(reponses);
+
     return (
-        <div>
+        <div className="results-container">
             <Banner />
-            <h1>Résultats</h1>
-            <ul >
+            <h1 className="results-title">Résultats</h1>
+            <ul className="results-list">
                 {reponseValues && reponseValues.map((reponse, index) => (
-                    <span>{formatQuestionList(reponse, index)}<br /></span>))}
+                    <li key={index} className="results-item">
+                        {formatQuestionList(reponse, index)}
+                    </li>
+                ))}
             </ul>
             <Footer />
         </div>
-    )
-
+    );
 }
-export default Results
 
+export default Results;

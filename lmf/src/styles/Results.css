@@ -1,0 +1,26 @@
+/* Results.css */
+.results-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.results-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.results-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.results-item {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+}

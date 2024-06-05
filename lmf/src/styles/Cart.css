@@ -1,6 +1,105 @@
+/* Cart.css */
 .lmf-cart {
-    color: white;
-    background-color: #117380;
-    padding: 32px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 400px;
+    margin: auto;
 }
-    
+
+.lmf-cart-close {
+    background-color: #ff4b5c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.lmf-cart-close:hover {
+    background-color: #e94450;
+}
+
+.lmf-cart-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.lmf-cart-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lmf-cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lmf-cart-item-name,
+.lmf-cart-item-price,
+.lmf-cart-item-amount {
+    font-size: 18px;
+    color: #555;
+}
+
+.lmf-cart-item-delete {
+    background-color: #ff4b5c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lmf-cart-item-delete:hover {
+    background-color: #e94450;
+}
+
+.lmf-cart-total {
+    font-size: 22px;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lmf-cart-empty,
+.lmf-cart-order {
+    display: block;
+    width: 100%;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.lmf-cart-empty:hover,
+.lmf-cart-order:hover {
+    background-color: #0056b3;
+}
+
+.lmf-cart-open {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.lmf-cart-open:hover {
+    background-color: #0056b3;
+}

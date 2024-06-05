@@ -1,16 +1,18 @@
-import '../styles/Detail.css'
-import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import Banner from '../components/Banner'
-import Footer from '../components/Footer'
+import '../styles/Detail.css';
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import Banner from '../components/Banner';
+import Footer from '../components/Footer';
+
 function Detail() {
-    const { idArticle } = useParams()
-    const [detailVetement, setData] = useState({})
-    const [listAvis, setListAvis] = useState([])
+    const { idArticle } = useParams();
+    const [detailVetement, setData] = useState({});
+    const [listAvis, setListAvis] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [updatedVetement, setUpdatedVetement] = useState({
         name: '', cover: '', price: 0, confort: 0, taille: ''
     });
+
     useEffect(() => {
         fetch(`http://localhost:3002/${idArticle}`)
             .then((response) => response.json())
@@ -20,16 +22,17 @@ function Detail() {
             })
             .catch((error) => {
                 console.error('Erreur lors de la récupération du détail vêtement:', error);
-            })
+            });
     }, [idArticle]);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        //console.log(value);
         setUpdatedVetement((prevVetement) => ({
             ...prevVetement,
             [name]: value
         }));
     };
+
     const handleUpdateVetement = () => {
         fetch(`http://localhost:3002/${idArticle}`, {
             method: 'PUT',
@@ -43,10 +46,12 @@ function Detail() {
             })
             .catch(error => console.error('Erreur lors de la requête PUT :', error));
     };
+
     const [image, setImage] = useState(null);
     const handleImageChange = (e) => {
         setImage(e.target.files[0]);
     };
+
     const handleImageUpload = () => {
         const formData = new FormData();
         formData.append('image', image);
@@ -58,7 +63,6 @@ function Detail() {
             .then(response => response.json())
             .then(data => {
                 const imageUrl = data.imageUrl;
-                // Mettre à jour l'URL de l'image dans le state
                 setUpdatedVetement({ ...updatedVetement, cover: imageUrl });
                 setIsEditing(false);
             })
@@ -66,6 +70,7 @@ function Detail() {
                 console.error('Erreur téléchargement image :', error);
             });
     };
+
     useEffect(() => {
         fetch(`http://localhost:3002/avis/${idArticle}`)
             .then((response) => response.json())
@@ -74,15 +79,16 @@ function Detail() {
             })
             .catch((error) => {
                 console.error('Erreur lors de la récupération des avis:', error);
-            })
+            });
     }, [idArticle]);
 
     let userId = localStorage.getItem('userId');
     if (!userId) {
-        userId = 0
+        userId = 0;
     }
     const [envoiAvis, setEnvoiAvis] = useState("");
-    const [errorMessage, setErrorMessage] = useState(''); // Stocke les messages d'erreur à afficher.
+    const [errorMessage, setErrorMessage] = useState(''); 
+
     const handleSubmitAvis = async (e) => {
         e.preventDefault();
         try {
@@ -94,17 +100,17 @@ function Detail() {
                 },
                 body: JSON.stringify({ envoiAvis, userId })
             });
-            if (!response.ok) {// Si la réponse n'est pas OK, gérer l'erreur
+            if (!response.ok) {
                 const errorMessage = await response.text();
                 setErrorMessage(errorMessage);
                 throw new Error(errorMessage);
             }
-            const data = await response.json(); // on récupère les données du json si ok
+            const data = await response.json();
             console.log(data);
             window.location.href = '/detail/' + idArticle;
         } catch (error) {
             console.error('Erreur lors de la modification :', error);
-            setErrorMessage('Erreur'); // Affiche message erreur à utilisateur
+            setErrorMessage('Erreur');
         }
     };
 
@@ -113,55 +119,53 @@ function Detail() {
             <Banner />
             <h1 className="detail-heading">Détail du vêtement</h1>
             {!isEditing ? (
-                <div>
-                    <h1 >{detailVetement.name}</h1>
-                    <img src={detailVetement.cover}
-                        alt={`${detailVetement.name} cover`}
-                    />
+                <div className="detail-content">
+                    <h1 className="detail-name">{detailVetement.name}</h1>
+                    <img className="detail-cover" src={detailVetement.cover} alt={`${detailVetement.name} cover`} />
                     {detailVetement.video && (
                         <iframe
                             width="560"
                             height="315"
                             src={detailVetement.video + "?autoplay=1"}
                             title="YouTube video player"
-                            frameborder="0"
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen
-                            >
-                        </iframe>
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                        ></iframe>
                     )}
-                    <h2 >Prix : {detailVetement.price} euros</h2>
-                    <h2 >Confort : {detailVetement.confort}</h2>
-                    <h2 >Taille : {detailVetement.taille}</h2>
-                    <button onClick={() => setIsEditing(true)}>Modifier</button>
+                    <h2 className="detail-price">Prix : {detailVetement.price} euros</h2>
+                    <h2 className="detail-confort">Confort : {detailVetement.confort}</h2>
+                    <h2 className="detail-taille">Taille : {detailVetement.taille}</h2>
+                    <button className="detail-edit-button" onClick={() => setIsEditing(true)}>Modifier</button>
                     {listAvis.length > 0 && (
-                        <div>
-                            <h2 >Avis :</h2>
-                            <ul>
+                        <div className="detail-avis">
+                            <h2 className="detail-avis-title">Avis :</h2>
+                            <ul className="detail-avis-list">
                                 {listAvis.map((avis) => (
-                                    <li key={avis.idAvis}>{avis.prenom} a commenté : {avis.avis}</li>
+                                    <li key={avis.idAvis} className="detail-avis-item">{avis.prenom} a commenté : {avis.avis}</li>
                                 ))}
                             </ul>
                         </div>
                     )}
-                    {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-                    <form onSubmit={handleSubmitAvis}>
-                        <input type="text" placeholder="Votre avis" value={envoiAvis} onChange={(e) => setEnvoiAvis(e.target.value)} />
-                        <button type="submit">Envoyer</button>
+                    {errorMessage && <p className="error-message" style={{ color: 'red' }}>{errorMessage}</p>}
+                    <form className="detail-avis-form" onSubmit={handleSubmitAvis}>
+                        <input className="detail-avis-input" type="text" placeholder="Votre avis" value={envoiAvis} onChange={(e) => setEnvoiAvis(e.target.value)} />
+                        <button className="detail-avis-submit" type="submit">Envoyer</button>
                     </form>
                 </div>
             ) : (
                 <div className="form-container">
                     <label className="form-label">Nom:</label>
                     <input className="form-input" type="text" name="name" value={updatedVetement.name} onChange={handleInputChange} />
-                    <input type="file" onChange={handleImageChange} />
+                    <input className="form-input" type="file" onChange={handleImageChange} />
                     <button className="form-button" onClick={() => { handleUpdateVetement(); handleImageUpload(); }}>Enregistrer</button>
                     <button className="form-button" onClick={() => setIsEditing(false)}>Annuler</button>
                 </div>
             )}
             <Footer />
         </div>
-    )
+    );
 }
-export default Detail
+
+export default Detail;

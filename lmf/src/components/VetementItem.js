@@ -1,23 +1,21 @@
-import '../styles/VetementItem.css'
-function VetementItem(props) {
-    const idValue = props.id
-    const coverValue = props.cover
-    const nameValue = props.name
-    const tailleValue = props.taille
-    const confortValue = props.confort
-    const priceValue = props.price
-    return (
-        <div>
-            <a href={`/detail/${idValue}`}>
-                <img className='lmf-vetement-item-cover' src={coverValue} alt={nameValue} /><br />
-                <br />
-            </a>
-            {nameValue}<br />
-            Taille : {tailleValue} <br />
-            Confort : {confortValue}
-            <span className='lmf-vetement-item-price'>{priceValue}€</span>
+import '../styles/VetementItem.css';
 
+function VetementItem(props) {
+    const { id, cover, name, taille, confort, price } = props;
+
+    return (
+        <div className='lmf-vetement-item-container'>
+            <a href={`/detail/${id}`}>
+                <img className='lmf-vetement-item-cover' src={cover} alt={name} />
+            </a>
+            <div className='lmf-vetement-item-details'>
+                <div className='lmf-vetement-item-name'>{name}</div>
+                <div className='lmf-vetement-item-taille'>Taille : {taille}</div>
+                <div className='lmf-vetement-item-confort'>Confort : {confort}</div>
+                <span className='lmf-vetement-item-price'>{price}€</span>
+            </div>
         </div>
-    )
+    );
 }
-export default VetementItem
+
+export default VetementItem;

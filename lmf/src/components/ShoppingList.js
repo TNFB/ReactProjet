@@ -1,43 +1,38 @@
-import '../styles/ShoppingList.css'
-import VetementItem from './VetementItem'
-import { useState, useEffect } from 'react'
-
+import '../styles/ShoppingList.css';
+import VetementItem from './VetementItem';
+import { useState, useEffect } from 'react';
 
 function ShoppingList({ cart, updateCart }) {
-
     function addToCart(name, price) {
-        const currentVetementAdded = cart.find((vetement) => vetement.name === name)
+        const currentVetementAdded = cart.find((vetement) => vetement.name === name);
         if (currentVetementAdded) {
-            const cartFiltered = cart.filter(
-                (vetement) => vetement.name !== name
-            )
+            const cartFiltered = cart.filter((vetement) => vetement.name !== name);
             updateCart([
                 ...cartFiltered,
                 { name, price, amount: currentVetementAdded.amount + 1 }
-            ])
+            ]);
         } else {
-            updateCart([...cart, { name, price, amount: 1 }])
+            updateCart([...cart, { name, price, amount: 1 }]);
         }
     }
 
-    const [freelancersList, setVetementsList] = useState([])
+    const [vetementsList, setVetementsList] = useState([]);
     useEffect(() => {
         fetch(`http://localhost:3002/`)
             .then((response) => response.json())
-            .then((freelancersList) => {
-                setVetementsList(freelancersList)
+            .then((vetementsList) => {
+                setVetementsList(vetementsList);
             })
             .catch((error) => {
                 console.error('Erreur lors de la récupération des vêtements:', error);
-            })
-    }, [])
-
+            });
+    }, []);
 
     return (
-        <div>
+        <div className='lmf-shopping-list-container'>
             <ul className='lmf-vetement-list'>
-                {freelancersList.map((vetement) => (
-                    <li className='lmf-vetement-item'>
+                {vetementsList.map((vetement) => (
+                    <li key={vetement.id} className='lmf-vetement-item'>
                         {vetement.isSpecialOffer === 1 && <div className='lmf-sales'>Soldes</div>}
                         <VetementItem
                             id={vetement.id}
@@ -48,8 +43,7 @@ function ShoppingList({ cart, updateCart }) {
                             price={vetement.price}
                         />
                         <button
-                            className='lmf-button-Add'
-                            /*onClick={() => updateCart(cart + 1)}*/
+                            className='lmf-button-add'
                             onClick={() => addToCart(vetement.name, vetement.price)}
                         >
                             Ajouter
@@ -58,6 +52,7 @@ function ShoppingList({ cart, updateCart }) {
                 ))}
             </ul>
         </div>
-    )
+    );
 }
-export default ShoppingList
+
+export default ShoppingList;
