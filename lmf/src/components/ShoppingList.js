@@ -38,6 +38,7 @@ function ShoppingList({ cart, updateCart }) {
                             id={vetement.id}
                             cover={vetement.cover}
                             name={vetement.name}
+                            category={vetement.category}
                             taille={vetement.taille}
                             confort={vetement.confort}
                             price={vetement.price}
