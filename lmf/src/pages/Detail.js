@@ -14,7 +14,7 @@ function Detail() {
     });
 
     useEffect(() => {
-        fetch(`http://localhost:3002/${idArticle}`)
+        fetch(`http://localhost:3001/${idArticle}`)
             .then((response) => response.json())
             .then((detailVetement) => {
                 setData(detailVetement);
@@ -34,7 +34,7 @@ function Detail() {
     };
 
     const handleUpdateVetement = () => {
-        fetch(`http://localhost:3002/${idArticle}`, {
+        fetch(`http://localhost:3001/${idArticle}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updatedVetement)
@@ -56,7 +56,7 @@ function Detail() {
         const formData = new FormData();
         formData.append('image', image);
         formData.append('vetementId', idArticle);
-        fetch('http://localhost:3002/upload', {
+        fetch('http://localhost:3001/upload', {
             method: 'POST',
             body: formData
         })
@@ -72,7 +72,7 @@ function Detail() {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:3002/avis/${idArticle}`)
+        fetch(`http://localhost:3001/avis/${idArticle}`)
             .then((response) => response.json())
             .then((listAvis) => {
                 setListAvis(listAvis);
@@ -92,7 +92,7 @@ function Detail() {
     const handleSubmitAvis = async (e) => {
         e.preventDefault();
         try {
-            const url = `http://localhost:3002/avis/${idArticle}`;
+            const url = `http://localhost:3001/avis/${idArticle}`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

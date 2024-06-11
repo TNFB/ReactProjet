@@ -109,7 +109,7 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     try {
         // req.file contient les informations sur le fichier téléchargé
         if (req.file) { // Si true, le fichier a été téléchargé avec succès
-            const imageUrl = `http://localhost:3002/images/${req.file.filename}`;
+            const imageUrl = `http://localhost:3001/images/${req.file.filename}`;
             // Mise à jour du champ 'cover' dans MySQL avec la nouvelle URL de l'image
             const vetementId = req.body.vetementId; // Assurez-vous d'envoyer l'ID du vêtement avec la requête POST (côté Front)
             const updateQuery = 'UPDATE vetement SET cover = ? WHERE id = ?';

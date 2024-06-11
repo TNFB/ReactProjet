@@ -40,7 +40,7 @@ function Commande() {
         const commandeJSON = JSON.stringify(updatedCommande);
         console.log(commandeJSON);
 
-        const response = await fetch('http://localhost:3002/commande/', {
+        const response = await fetch('http://localhost:3001/commande/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

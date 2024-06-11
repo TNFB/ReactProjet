@@ -22,7 +22,7 @@ function GestionArticles() {
     const [editId, setEditId] = useState(null);
 
     useEffect(() => {
-        fetch('http://localhost:3002/')
+        fetch('http://localhost:3001/')
             .then(response => response.json())
             .then(data => setArticles(data));
     }, []);
@@ -30,7 +30,7 @@ function GestionArticles() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const article = { name, cover, category, isSpecialOffer, price, confort, taille, video };
-        const response = await fetch('http://localhost:3002/gestionArticles/', {
+        const response = await fetch('http://localhost:3001/gestionArticles/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ function GestionArticles() {
 
     const handleSave = async (id) => {
         const article = { name, cover, category, isSpecialOffer, price, confort, taille, video };
-        const response = await fetch(`http://localhost:3002/${id}`, {
+        const response = await fetch(`http://localhost:3001/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -76,7 +76,7 @@ function GestionArticles() {
     };
 
     const handleDelete = async (id) => {
-        const response = await fetch(`http://localhost:3002/${id}`, {
+        const response = await fetch(`http://localhost:3001/${id}`, {
             method: 'DELETE'
         });
         if (response.ok) {

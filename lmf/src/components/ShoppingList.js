@@ -18,7 +18,7 @@ function ShoppingList({ cart, updateCart }) {
 
     const [vetementsList, setVetementsList] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:3002/`)
+        fetch(`http://localhost:3001/`)
             .then((response) => response.json())
             .then((vetementsList) => {
                 setVetementsList(vetementsList);

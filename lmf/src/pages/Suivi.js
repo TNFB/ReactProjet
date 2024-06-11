@@ -11,7 +11,7 @@ function Suivi() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = `http://localhost:3002/suivi/${idCommande}`;
+            const url = `http://localhost:3001/suivi/${idCommande}`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

@@ -19,7 +19,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = isSignup ? 'http://localhost:3002/signup' : 'http://localhost:3002/login';
+            const url = isSignup ? 'http://localhost:3001/signup' : 'http://localhost:3001/login';
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

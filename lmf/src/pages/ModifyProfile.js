@@ -26,7 +26,7 @@ function ModifyProfile() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const url = `http://localhost:3002/modifyProfile/${userId}`;
+            const url = `http://localhost:3001/modifyProfile/${userId}`;
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

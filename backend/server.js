@@ -8,4 +8,4 @@ app.set('port', process.env.PORT || 3002);
 // et on lui passe l'application Express ‘app’ comme gestionnaire de requêtes. 
 const server = http.createServer(app);
 //le serveur est configuré pour écouter les connexions sur le port spécifié. 
-server.listen(process.env.PORT || 3002);
+server.listen(process.env.PORT || 3001);
