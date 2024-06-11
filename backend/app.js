@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 
 
 const connection = mysql.createConnection({
-    host: '127.0.0.1',
-    port: '32561',
-    user: 'frontback',
-    password: 'frontbackESEO2024',
+    host: 'reactprojet-db-1',
+    port: '3306',
+    user: 'root',
+    password: 'rootpassword',
     database: 'front_back',
 });
 

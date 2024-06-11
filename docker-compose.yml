@@ -8,7 +8,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - react-app-network
 
@@ -19,7 +20,8 @@ services:
     ports:
       - "3001:3001"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - react-app-network
 
@@ -30,7 +32,8 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - react-app-network
 
@@ -46,6 +49,11 @@ services:
       - "3306:3306"
     networks:
       - react-app-network
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "-uroot", "-prootpassword", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 10s
+      retries: 5
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -58,7 +66,8 @@ services:
     networks:
       - react-app-network
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 networks:
   react-app-network:
