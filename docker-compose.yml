@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - react-app-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    networks:
+      - react-app-network
+
+  lmf:
+    build:
+      context: ./lmf
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - db
+    networks:
+      - react-app-network
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: front_back
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./front_back.sql:/docker-entrypoint-initdb.d/front_back.sql
+    ports:
+      - "3306:3306"
+    networks:
+      - react-app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "8080:80"
+    networks:
+      - react-app-network
+    depends_on:
+      - db
+
+networks:
+  react-app-network:
+    driver: bridge
+
+volumes:
+  db_data:
