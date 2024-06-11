@@ -149,8 +149,8 @@ INSERT INTO `vetement` (`id`, `name`, `cover`, `category`, `isSpecialOffer`, `ta
 (1, 'pull', 'http://localhost:8000/images/2.jpg', 'haut', 1, 'M', '1', 15, 'https://www.youtube.com/embed/O1DduwpIP0s?si=_Am4ScFiIyaINkLu'),
 (2, 'robe', 'http://localhost:8000/images/8.jpg', 'bas', 1, 'XS', '2', 26, NULL),
 (3, 'pantalon', 'http://localhost:8000/images/3.jpg', 'bas', 0, 'M', '3', 12, NULL),
-(5, 'testimg', 'http://localhost:3002/images/1717606549915-hollup.jpg', 'test', 0, 'XS', '-1', 1, 'https://www.youtube.com/embed/SChnJDfmrSU?si=XESTxZFlC-k-tdvV'),
-(7, 'chemisier', 'http://localhost:3002/images/1717614163743-chemisier.jpg', 'haut', 1, 'L', 'Serré', 9999, 'https://www.youtube.com/embed/nwuW98yLsgY?si=deLokq0A7V7Dhk0T');
+(5, 'testimg', 'http://localhost:3001/images/1717606549915-hollup.jpg', 'test', 0, 'XS', '-1', 1, 'https://www.youtube.com/embed/SChnJDfmrSU?si=XESTxZFlC-k-tdvV'),
+(7, 'chemisier', 'http://localhost:3001/images/1717614163743-chemisier.jpg', 'haut', 1, 'L', 'Serré', 9999, 'https://www.youtube.com/embed/nwuW98yLsgY?si=deLokq0A7V7Dhk0T');
 
 --
 -- Index pour les tables déchargées
