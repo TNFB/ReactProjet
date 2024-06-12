@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 
 const connection = mysql.createConnection({
-    host: 'reactprojet-db-1',
+    host: '127.0.0.1',
     port: '3306',
     user: 'root',
     password: 'rootpassword',
